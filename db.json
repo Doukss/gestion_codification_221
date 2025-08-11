@@ -1,0 +1,108 @@
+{
+  "utilisateurs": [
+    {
+      "id": 1,
+      "nom": "Admin Principal",
+      "email": "admin@campuslog.sn",
+      "password": "admin123",
+      "avatar": "https://pikaso.cdnpk.net/public/production/prompt-templates/211.png?preview=1",
+      "role": "admin",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "nom": "Agent Logement",
+      "email": "agent@campuslog.sn",
+      "password": "agent123",
+      "avatar": "https://pikaso.cdnpk.net/public/production/prompt-templates/211.png?preview=1",
+      "role": "agent",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "nom": "Fatou Ndiaye",
+      "email": "fatou020@gmail.com",
+      "password": "agent123",
+      "avatar": "https://pikaso.cdnpk.net/public/production/prompt-templates/211.png?preview=1",
+      "role": "etudiant",
+      "deleted": false
+    }
+  ],
+  "chambres": [
+    {
+      "id": 1,
+      "code": "CH-101-A",
+      "numero": "101",
+      "type": "double",
+      "capacite": 2,
+      "etat": "occuper",
+      "id_etage": 1
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "utilisateur_id": 1
+    }
+  ],
+  "etudiants": [
+    {
+      "id": 1,
+      "utilisateur_id": 3,
+      "sexe": "F",
+      "matricule": "ETD2025001",
+      "filiere": "Informatique",
+      "niveau": "L2"
+    }
+  ],
+  "agent": [
+    {
+      "id": 1,
+      "utilisateur_id": 2
+    }
+  ],
+
+  "blocs": [
+    {
+      "id": 1,
+      "nom_bloc": "Bloc-1A",
+      "description": ""
+    }
+  ],
+  "etages": [
+    {
+      "id": 1,
+      "numero_etage": "2e",
+      "id_bloc": 1
+    }
+  ],
+  "affectations": [
+    {
+      "id": 1,
+      "etudiant_id": 1,
+      "chambre_id": 1,
+      "date_debut": "2025/05/12",
+      "date_fin": "2025/07/18",
+      "effectuée_par": 2,
+      "type_affectation": "automatique"
+    }
+  ],
+
+  "modeles_codification": [
+    {
+      "id": 1,
+      "nom_modele": "modele 1",
+      "deleted": false
+    }
+  ],
+  "historiques": [
+    {
+      "id": 1,
+      "action": "Affectation chambre CH-101-A à Fatou Diop",
+      "utilisateur_id": 2,
+      "etudiant_id": 1,
+      "chambre_id": 1,
+      "date": "2025-08-01T10:30:00"
+    }
+  ]
+}
