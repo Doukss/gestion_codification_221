@@ -6,12 +6,13 @@ export class AuthService {
 
   async login({ email, password }) {
     const users = await this.api.get(`/utilisateurs`);
+    // console.log("Utilisateurs récupérés :", users);
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
 
     if (!user) {
-      throw new Error("Email ou mot de passe incorrect");
+      throw new Error("Email ou mot de passe incorrect");z
     }
     this.storage.set("auth_token", btoa(JSON.stringify(user)));
     this.storage.set("user", user);

@@ -14,24 +14,22 @@ import { AdminController } from "../controllers/AdminController.js";
 import { adminRoutes } from "../routes/admin.routes.js";
 import { AdminLayout } from "../layout/AdminLayout.js";
 import { Cloudinary } from "./core/Cloudinary.js";
-import { ProductService } from "../services/boutiquier/produit/ProduitService.js";
-import { ProductController } from "../controllers/boutiquier/ProductController.js";
-import { boutiquierRoutes } from "../routes/boutiquier_product.routes.js";
-import { BoutiquierLayout } from "../layout/BoutiquierLayout.js";
-import { ArticleService } from "../services/boutiquier/article/ArticleService.js";
-import { ArticleController } from "../controllers/boutiquier/ArticleController.js";
-import { BoutiquierClientService } from "../services/boutiquier/BoutiquierClientService.js";
-import { BoutiquierClientController } from "../controllers/boutiquier/BoutiquierClientController.js";
-import { BoutiquierDetteService } from "../services/boutiquier/BoutiquierDetteService.js";
-import { BoutiquierDetteController } from "../controllers/boutiquier/BoutiquierDetteController.js";
 import { errorRoutes } from "../routes/error.routes.js";
 import { ErrorLayout } from "../layout/ErrorLayout.js";
-import { ClientArticleService } from "../services/client/ClientArticleService.js";
-import { ProduitController } from "../controllers/client/ProduitController.js";
-import { clientRoutes } from "../routes/client.routes.js";
-import { clientLayout } from "../layout/ClientLayout.js";
-import { ClientDetteController } from "../controllers/client/ClientDetteController.js";
-import { ClientDetteService } from "../services/client/ClientDetteService.js";
+import { agentRoutes } from "../routes/agent.routes.js";
+import { AgentLayout } from "../layout/AgentLayout.js";
+import { EtudiantService } from "../services/agent/EtudiantService.js";
+import { EtudiantController } from "../controllers/agent/EtudiantController.js";
+import { AgentController } from "../controllers/agent/AgentController.js";
+import { ChambreService } from "../services/agent/ChambreService.js";
+import { ChambreController } from "../controllers/agent/ChambreController.js";
+import { AffectationService } from "../services/agent/affectationService.js";
+import { AffectationController } from "../controllers/agent/AffectationControlleur.js";
+// import { AffectationController } from "../controllers/agent/AffectationControlleur.js";
+// import { AffectationService } from "../services/agent/affectationService.js";
+
+
+
 
 export class App {
   constructor(config) {
@@ -57,38 +55,28 @@ export class App {
       storage: this.services.storage,
     });
 
+    this.services.etudiants = new EtudiantService({ 
+    api: this.services.api 
+    });
+
     this.services.cloudinary = new Cloudinary(this);
     
-    this.services.products = new ProductService({
+    this.services.chambres = new ChambreService({
       api: this.services.api,
       storage: this.services.storage,
     });
 
-    this.services.articles = new ArticleService({
+    this.services.etudiant = new EtudiantService({
       api: this.services.api,
       storage: this.services.storage,
     });
 
-    this.services.boutiquier_client_services = new BoutiquierClientService({
+    this.services.affectation = new AffectationService({
       api: this.services.api,
       storage: this.services.storage,
     });
-
-    this.services.boutiquier_dette_services = new BoutiquierDetteService({
-      api: this.services.api,
-      storage: this.services.storage,
-    });
-
-    
-    this.services.client_produits = new ClientArticleService({
-      api: this.services.api,
-      storage: this.services.storage,
-    });
-
-    this.services.client_dette_services = new ClientDetteService({
-      api: this.services.api,
-      storage: this.services.storage,
-    });
+  
+  
 
 
     //les controllers de l'applications
@@ -96,13 +84,10 @@ export class App {
     this.controllers = {
       Auth: new AuthController(this),
       admin: new AdminController(this),
-      product: new ProductController(this),
-      article: new ArticleController(this),
-      boutiquier_client: new BoutiquierClientController(this),
-      boutiquier_dette: new BoutiquierDetteController(this),
-      client_produit: new ProduitController(this),
-      client_dette: new ClientDetteController(this),
-      boutiquier_dette: new BoutiquierDetteController(this)
+      agent: new AgentController(this),
+      etudiant: new EtudiantController(this),
+      chambre: new ChambreController(this),
+      affectation: new AffectationController(this),
     };
 
     this.router = new Router(this, {
@@ -111,16 +96,14 @@ export class App {
 
     this.router.addLayout("auth", AuthLayout);
     this.router.addLayout("admin", AdminLayout)
-    this.router.addLayout("boutiquier", BoutiquierLayout)
     this.router.addLayout("error", ErrorLayout)
-    this.router.addLayout("client", clientLayout)
+    this.router.addLayout("agent", AgentLayout)
 
     this.router.addRoutes(authRoutes);
     this.router.addRoutes(adminRoutes)
-    this.router.addRoutes(clientRoutes)
-    this.router.addRoutes(boutiquierRoutes)
     this.router.addRoutes(errorRoutes)
-    this.router.addRoutes(errorRoutes)
+    this.router.addRoutes(agentRoutes)
+
 
     this.initModules();
     hydrateStoreFromLocalStorage(this.store, this.services.storage);
@@ -136,4 +119,5 @@ export class App {
   getController(name) {
     return this.controllers[name];
   }
+
 }

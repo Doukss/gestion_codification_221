@@ -14,10 +14,10 @@ export const AdminGuard = {
   execute: RoleGuard.requiredRole("admin"),
 };
 
-export const BoutiquierGuard = {
-  execute: RoleGuard.requiredRole("boutiquier"),
+export const AgentGuard = {
+  execute: RoleGuard.requiredRole("agent"),
 };
 
-export const ClientGuard = {
-  execute: RoleGuard.requiredRole("client"),
+export const EtudiantGuard = {
+  execute: RoleGuard.requiredRole("etudiant"),
 };

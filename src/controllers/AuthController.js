@@ -32,7 +32,7 @@ export class AuthController {
   redirectAfterLogin(role) {
     const routes = {
       admin: "/admin/dashboard",
-      agent: "/agent/dashboard",
+      agent: "/agent/etudiant",
       etudiant: "/etudiant/dashboard",
     };
 

@@ -61,7 +61,7 @@ export default class Sidebar {
       .map(
         (link) => `
       <li class="py-2 px-4 ${
-        link.active ? "bg-[#34505a] text-white shadow-lg rounded-3xl" : ""
+        link.active ? "bg-purple-500 text-white shadow-lg rounded-3xl" : ""
       }">
         <a href="${
           link.path || "#"

@@ -53,6 +53,14 @@
       "matricule": "ETD2025001",
       "filiere": "Informatique",
       "niveau": "L2"
+    },
+    {
+      "id": 2,
+      "utilisateur_id": 4,
+      "sexe": "M",
+      "matricule": "ETD2025002",
+      "filiere": "Informatique",
+      "niveau": "L2"
     }
   ],
   "agent": [

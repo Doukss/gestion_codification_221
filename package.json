@@ -10,7 +10,7 @@
     "start": "npx json-server --watch db.json"
   },
   "devDependencies": {
-    "daisyui": "^5.0.46",
+    "daisyui": "^5.0.50",
     "vite": "^7.0.4"
   },
   "dependencies": {
